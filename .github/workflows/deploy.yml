@@ -2,15 +2,6 @@
 #  CI/CD — Deploy ke Firebase Hosting
 # ------------------------------------------------------------
 #  Otomatis build & deploy setiap ada push ke branch main.
-#  Preview channel dibuat otomatis untuk setiap Pull Request.
-#
-#  SETUP WAJIB (satu kali):
-#  1. Buka repository di GitHub → Settings → Secrets and variables
-#     → Actions → New repository secret
-#  2. Tambahkan secret:
-#     - Name : FIREBASE_SERVICE_ACCOUNT
-#     - Value: isi dengan Service Account JSON
-#               (lihat bagian "Cara dapat Service Account" di README.md)
 # ============================================================
 
 name: Deploy to Firebase Hosting
@@ -24,9 +15,6 @@ on:
       - main
 
 jobs:
-  # ----------------------------------------------------------
-  #  Build
-  # ----------------------------------------------------------
   build:
     name: Build Astro Site
     runs-on: ubuntu-latest
@@ -54,9 +42,6 @@ jobs:
           path: dist/
           retention-days: 1
 
-  # ----------------------------------------------------------
-  #  Deploy ke Production (hanya saat push ke main)
-  # ----------------------------------------------------------
   deploy-production:
     name: Deploy Production
     needs: build
@@ -77,13 +62,10 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_TOKEN }}
           channelId: live
           projectId: massbim-web
 
-  # ----------------------------------------------------------
-  #  Deploy Preview (hanya saat Pull Request)
-  # ----------------------------------------------------------
   deploy-preview:
     name: Deploy Preview
     needs: build
@@ -104,6 +86,5 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_TOKEN }}
           projectId: massbim-web
-          # Preview channel dibuat otomatis, URL-nya dikomentarkan ke PR
