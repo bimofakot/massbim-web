@@ -1,0 +1,226 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import CTA from '@components/CTA.astro';
+import Icon from '@components/Icon.astro';
+
+const skills = [
+  { name: 'Frontend Development', level: 95, tags: ['React', 'Astro', 'Next.js', 'Vue'] },
+  { name: 'Backend Development', level: 85, tags: ['Node.js', 'Express', 'API', 'Database'] },
+  { name: 'UI/UX Design', level: 90, tags: ['Figma', 'Tailwind', 'Responsive', 'Prototyping'] },
+  { name: 'SEO & Performance', level: 88, tags: ['Core Web Vitals', 'SEO', 'Optimization'] },
+];
+
+const values = [
+  {
+    icon: 'heart',
+    title: 'Passion Driven',
+    desc: 'Saya bikin website karena saya suka. Setiap proyek dikerjakan dengan dedikasi penuh, bukan sekadar menggugurkan kewajiban.',
+  },
+  {
+    icon: 'shield',
+    title: 'Jujur & Transparan',
+    desc: 'Tidak ada biaya tersembunyi. Progress update jelas. Kalau ada kendala, saya sampaikan. Trust adalah fondasi kerja saya.',
+  },
+  {
+    icon: 'zap',
+    title: 'Selalu Belajar',
+    desc: 'Tech berkembang cepat. Saya investasikan waktu untuk terus belajar teknologi terbaru agar klien dapat yang terbaik.',
+  },
+  {
+    icon: 'users',
+    title: 'Klien adalah Partner',
+    desc: 'Bukan sekadar transaksi. Saya melihat klien sebagai partner jangka panjang. Sukses Anda adalah sukses saya.',
+  },
+];
+
+const journey = [
+  { year: 'Awal Mula', text: 'Mulai dari hobi coding, belajar otodidak dari tutorial online dan proyek personal.' },
+  { year: 'Proyek Pertama', text: 'Membuat website untuk bisnis teman dan keluarga. Dari sana mulai dapet proyek dari referral.' },
+  { year: 'Pertumbuhan', text: 'Terus belajar tech stack baru, ekspansi portofolio, dan mulai melayani klien dari berbagai kota.' },
+  { year: 'Sekarang', text: 'Fokus bantu bisnis Indonesia go digital dengan website profesional yang terjangkau.' },
+];
+---
+
+<BaseLayout
+  title="Tentang — MassBim Web Developer"
+  description="Kenali MassBim — web developer freelance yang bantu bisnis Indonesia go digital dengan website profesional."
+>
+  <!-- Page header -->
+  <section class="container-max pt-12 pb-8 text-center">
+    <div class="badge mb-5 mx-auto" data-animate>
+      <Icon name="users" class="w-3.5 h-3.5" />
+      Tentang Kami
+    </div>
+    <h1 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl mx-auto mb-5" data-animate>
+      Halo, Saya <span class="text-gradient">MassBim</span>
+    </h1>
+    <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-animate data-animate-delay="100">
+      Web developer freelance yang passionate bantu bisnis Indonesia punya website profesional,
+      cepat, dan terjangkau.
+    </p>
+  </section>
+
+  <!-- Profile + Bio -->
+  <section class="container-max my-16">
+    <div class="grid lg:grid-cols-5 gap-10 items-center">
+      <!-- Profile visual -->
+      <div class="lg:col-span-2" data-animate>
+        <div class="relative glass rounded-3xl p-8 max-w-sm mx-auto">
+          <div class="w-40 h-40 mx-auto rounded-3xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center text-white text-7xl font-display font-black mb-6">
+            M
+          </div>
+          <div class="text-center">
+            <h3 class="font-display font-bold text-xl text-white mb-1">MassBim</h3>
+            <p class="text-slate-400 text-sm mb-4">Full-Stack Web Developer</p>
+            <div class="flex justify-center gap-2 flex-wrap">
+              <span class="badge">Freelance</span>
+              <span class="badge">Remote</span>
+              <span class="badge">Indonesia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="lg:col-span-3 space-y-5" data-animate data-animate-delay="100">
+        <p class="text-slate-300 text-lg leading-relaxed">
+          Saya percaya setiap bisnis layak punya website yang membuat mereka bangga.
+          Website bukan cuma tempat menampilkan info — itu adalah etalase digital,
+          salesperson 24/7, dan aset paling penting di era digital.
+        </p>
+        <p class="text-slate-400 text-base leading-relaxed">
+          Dengan pengalaman membangun berbagai jenis website — dari landing page, toko online,
+          blog, sampai aplikasi web custom — saya tahu bahwa setiap bisnis punya kebutuhan unik.
+          Tidak ada solusi yang cocok untuk semua. Itulah kenapa setiap proyek saya kerjakan dengan
+          pendekatan custom: pahami dulu, baru bangun.
+        </p>
+        <p class="text-slate-400 text-base leading-relaxed">
+          Filosofi saya sederhana: <span class="text-brand-300 font-medium">website harus cepat, cantik,
+          dan mengonversi pengunjung jadi pelanggan.</span> Kalau website Anda tidak bantu bisnis tumbuh,
+          berarti belum berhasil.
+        </p>
+
+        <!-- Quick facts -->
+        <div class="grid grid-cols-2 gap-3 pt-4">
+          <div class="glass rounded-xl p-4">
+            <p class="text-2xl font-display font-bold text-gradient">20+</p>
+            <p class="text-slate-400 text-xs">Proyek Selesai</p>
+          </div>
+          <div class="glass rounded-xl p-4">
+            <p class="text-2xl font-display font-bold text-gradient">5+</p>
+            <p class="text-slate-400 text-xs">Tahun Pengalaman</p>
+          </div>
+          <div class="glass rounded-xl p-4">
+            <p class="text-2xl font-display font-bold text-gradient">100%</p>
+            <p class="text-slate-400 text-xs">Klien Puas</p>
+          </div>
+          <div class="glass rounded-xl p-4">
+            <p class="text-2xl font-display font-bold text-gradient">∞</p>
+            <p class="text-slate-400 text-xs">Semangat Belajar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="container-max my-24">
+    <SectionHeading
+      badge="Keahlian"
+      badgeIcon="code"
+      title="Tech Stack &"
+      highlight="Keahlian"
+      description="Teknologi dan tools yang saya gunakan untuk membangun website berkualitas."
+    />
+
+    <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      {skills.map((skill, i) => (
+        <div class="glass p-6 rounded-2xl" data-animate data-animate-delay={String((i % 2) * 100)}>
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-semibold text-white">{skill.name}</h3>
+            <span class="text-brand-300 font-display font-bold text-lg">{skill.level}%</span>
+          </div>
+          <!-- Progress bar -->
+          <div class="h-2 rounded-full bg-white/5 overflow-hidden mb-4">
+            <div
+              class="h-full rounded-full bg-gradient-to-r from-brand-500 to-violet-500 transition-all duration-1000"
+              style={`width: ${skill.level}%`}
+            >
+            </div>
+          </div>
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-1.5">
+            {skill.tags.map((tag) => (
+              <span class="px-2.5 py-1 rounded-lg text-xs bg-white/5 text-slate-400 border border-white/10">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="container-max my-24">
+    <SectionHeading
+      badge="Nilai"
+      badgeIcon="heart"
+      title="Yang Saya"
+      highlight="Pegang Teguh"
+      description="Prinsip yang memandu setiap proyek dan interaksi dengan klien."
+    />
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {values.map((value, i) => (
+        <div class="card-glow p-6 h-full" data-animate data-animate-delay={String((i % 4) * 100)}>
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/20 to-violet-500/20 border border-brand-400/20 flex items-center justify-center text-brand-300 mb-4">
+            <Icon name={value.icon} class="w-6 h-6" />
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">{value.title}</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">{value.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Journey -->
+  <section class="container-max my-24">
+    <SectionHeading
+      badge="Perjalanan"
+      badgeIcon="clock"
+      title="Cerita di Balik"
+      highlight="MassBim"
+    />
+
+    <div class="max-w-3xl mx-auto space-y-0">
+      {journey.map((item, i) => (
+        <div class="flex gap-5 group" data-animate data-animate-delay={String((i % 4) * 100)}>
+          <!-- Timeline -->
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center text-white font-display font-bold text-sm flex-shrink-0 shadow-lg shadow-brand-500/30">
+              {i + 1}
+            </div>
+            {i < journey.length - 1 && (
+              <div class="w-0.5 flex-grow bg-gradient-to-b from-brand-500/30 to-transparent min-h-[60px] my-2"></div>
+            )}
+          </div>
+          <!-- Content -->
+          <div class="pb-8 pt-2">
+            <h3 class="font-display font-bold text-lg text-white mb-1">{item.year}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTA
+    title="Yuk, kenalan lebih dekat!"
+    description="Saya selalu senang ngobrol soal web, bisnis, dan teknologi. Mau diskusi proyek atau sekadar ngopi ngobrol? Mari terhubung."
+    primaryLabel="Hubungi Saya"
+    secondaryLabel="Lihat Karya"
+  />
+</BaseLayout>

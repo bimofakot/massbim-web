@@ -1,0 +1,126 @@
+---
+import '@/styles/global.css';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'MassBim — Jasa Pembuatan Website Profesional',
+  description = 'Jasa pembuatan website profesional: Landing Page, Toko Online, Web UMKM, dan Custom Web Apps. Cepat, modern, dan terjangkau.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="id" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="MassBim" />
+    <meta name="keywords" content="jasa pembuatan website, landing page, toko online, web umkm, custom web app, website murah, web developer indonesia" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="MassBim" />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "MassBim - Jasa Pembuatan Website",
+      "description": "Jasa pembuatan website profesional: Landing Page, Toko Online, Web UMKM, dan Custom Web Apps.",
+      "url": "https://massbim.my.id",
+      "areaServed": "Indonesia",
+      "priceRange": "Rp 500rb - Custom",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "IDR",
+        "lowPrice": "500000",
+        "offerCount": "4"
+      }
+    })} />
+  </head>
+  <body class="relative min-h-screen">
+    <!-- Background decorative elements -->
+    <div class="fixed inset-0 z-0 grid-pattern"></div>
+    <div class="orb orb-brand w-[500px] h-[500px] bg-brand-600 top-[-100px] left-[-100px] animate-pulse-slow"></div>
+    <div class="orb orb-violet w-[400px] h-[400px] bg-violet-600 top-[40%] right-[-100px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+    <div class="orb orb-cyan w-[350px] h-[350px] bg-accent-500 bottom-[10%] left-[30%] animate-pulse-slow" style="animation-delay: 4s;"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+      <Header />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+
+    <!-- Scroll animation script -->
+    <script is:inline>
+      // Intersection Observer for scroll animations
+      (function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        // Card mouse-tracking glow effect
+        document.querySelectorAll('.card-glow').forEach((card) => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', x + 'px');
+            card.style.setProperty('--mouse-y', y + 'px');
+          });
+        });
+
+        // Observe all animate elements after DOM is ready
+        function initObserver() {
+          document.querySelectorAll('[data-animate]').forEach((el) => {
+            observer.observe(el);
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initObserver);
+        } else {
+          initObserver();
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import { processSteps } from '@data/portfolio';
+---
+
+<section class="container-max my-24">
+  <div class="text-center max-w-3xl mx-auto mb-14" data-animate>
+    <div class="badge mb-4 mx-auto">
+      <Icon name="layers" class="w-3.5 h-3.5" />
+      Proses Kerja
+    </div>
+    <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+      Cara Kerja yang <span class="text-gradient">Transparan</span>
+    </h2>
+    <p class="mt-5 text-slate-400 text-lg leading-relaxed">
+      4 langkah sederhana dari ide ke website yang siap go-live.
+    </p>
+  </div>
+
+  <div class="relative grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Connecting line (desktop) -->
+    <div class="hidden lg:block absolute top-10 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-brand-500/0 via-brand-500/30 to-brand-500/0"></div>
+
+    {processSteps.map((step, i) => (
+      <div
+        class="relative text-center lg:text-left"
+        data-animate
+        data-animate-delay={String((i + 1) * 100)}
+      >
+        <!-- Number circle -->
+        <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl glass mb-5 z-10">
+          <span class="font-display font-bold text-2xl text-gradient">{step.number}</span>
+          <div class="absolute -top-2 -right-2 w-8 h-8 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+            <Icon name={step.icon} class="w-4 h-4" />
+          </div>
+        </div>
+
+        <h3 class="font-display font-bold text-lg text-white mb-2">{step.title}</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">{step.description}</p>
+      </div>
+    ))}
+  </div>
+</section>

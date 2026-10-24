@@ -1,0 +1,213 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Icon from '@components/Icon.astro';
+
+const contactMethods = [
+  {
+    icon: 'whatsapp',
+    label: 'WhatsApp',
+    value: '+62 812-3456-7890',
+    href: 'https://wa.me/6281234567890',
+    desc: 'Respon paling cepat (biasanya <1 jam)',
+    color: 'from-green-500 to-emerald-600',
+  },
+  {
+    icon: 'mail',
+    label: 'Email',
+    value: 'hello@massbim.my.id',
+    href: 'mailto:hello@massbim.my.id',
+    desc: 'Untuk detail proyek yang panjang',
+    color: 'from-brand-500 to-violet-600',
+  },
+  {
+    icon: 'globe',
+    label: 'Website',
+    value: 'massbim.my.id',
+    href: 'https://massbim.my.id',
+    desc: 'Lihat karya dan layanan saya',
+    color: 'from-cyan-500 to-blue-600',
+  },
+];
+
+const services = ['Landing Page', 'Toko Online', 'Web UMKM', 'Custom Web Apps', 'Lainnya'];
+const budgets = ['< Rp 1jt', 'Rp 1jt - 3jt', 'Rp 3jt - 5jt', 'Rp 5jt - 10jt', '> Rp 10jt'];
+---
+
+<BaseLayout
+  title="Kontak — MassBim Konsultasi Website"
+  description="Hubungi MassBim untuk konsultasi gratis pembuatan website. WhatsApp, email, atau isi form di sini."
+>
+  <!-- Page header -->
+  <section class="container-max pt-12 pb-8 text-center">
+    <div class="badge mb-5 mx-auto" data-animate>
+      <Icon name="send" class="w-3.5 h-3.5" />
+      Konsultasi Gratis
+    </div>
+    <h1 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl mx-auto mb-5" data-animate>
+      Mari Bicarakan <span class="text-gradient">Proyek Anda</span>
+    </h1>
+    <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-animate data-animate-delay="100">
+      Isi form di bawah atau hubungi langsung via WhatsApp. Konsultasi gratis, tanpa komitmen.
+      Ceritakan kebutuhan bisnis Anda dan saya balas dengan solusi.
+    </p>
+  </section>
+
+  <!-- Contact methods -->
+  <section class="container-max my-12">
+    <div class="grid sm:grid-cols-3 gap-4">
+      {contactMethods.map((method, i) => (
+        <a
+          href={method.href}
+          target={method.href.startsWith('http') ? '_blank' : undefined}
+          rel={method.href.startsWith('http') ? 'noopener' : undefined}
+          class="card-glow p-6 group"
+          data-animate
+          data-animate-delay={String((i % 3) * 100)}
+        >
+          <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
+            <Icon name={method.icon} class="w-6 h-6" />
+          </div>
+          <p class="text-slate-500 text-xs mb-1">{method.label}</p>
+          <p class="font-semibold text-white text-sm mb-2">{method.value}</p>
+          <p class="text-slate-400 text-xs leading-relaxed">{method.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Contact form -->
+  <section class="container-max my-16">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass rounded-3xl p-8 md:p-10" data-animate>
+        <h2 class="font-display font-bold text-2xl text-white mb-2">Form Konsultasi</h2>
+        <p class="text-slate-400 text-sm mb-8">Isi data di bawah, saya akan menghubungi Anda secepatnya.</p>
+
+        <form id="contact-form" class="space-y-5">
+          <!-- Name -->
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Nama Lengkap *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="John Doe"
+                class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400/30 transition-all"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="email@bisnis.com"
+                class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400/30 transition-all"
+              />
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label for="phone" class="block text-sm font-medium text-slate-300 mb-2">No. WhatsApp *</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              placeholder="0812-3456-7890"
+              class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400/30 transition-all"
+            />
+          </div>
+
+          <!-- Service -->
+          <div>
+            <label for="service" class="block text-sm font-medium text-slate-300 mb-2">Layanan yang Diminati</label>
+            <div class="flex flex-wrap gap-2">
+              {services.map((service, i) => (
+                <label class="cursor-pointer">
+                  <input type="radio" name="service" value={service} class="peer sr-only" checked={i === 0} />
+                  <span class="inline-block px-4 py-2 rounded-xl text-sm font-medium bg-white/5 text-slate-400 border border-white/10 peer-checked:bg-brand-500/20 peer-checked:text-brand-300 peer-checked:border-brand-400/30 transition-all">
+                    {service}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Budget -->
+          <div>
+            <label for="budget" class="block text-sm font-medium text-slate-300 mb-2">Estimasi Budget</label>
+            <div class="flex flex-wrap gap-2">
+              {budgets.map((budget, i) => (
+                <label class="cursor-pointer">
+                  <input type="radio" name="budget" value={budget} class="peer sr-only" checked={i === 0} />
+                  <span class="inline-block px-4 py-2 rounded-xl text-sm font-medium bg-white/5 text-slate-400 border border-white/10 peer-checked:bg-brand-500/20 peer-checked:text-brand-300 peer-checked:border-brand-400/30 transition-all">
+                    {budget}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Ceritakan Kebutuhan Anda *</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="5"
+              placeholder="Misal: Saya butuh toko online untuk bisnis fashion saya. Produk sekitar 50 item, perlu integrasi payment gateway dan dashboard admin..."
+              class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400/30 transition-all resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-primary w-full">
+            <Icon name="send" class="w-4 h-4" />
+            Kirim & Dapat Konsultasi Gratis
+          </button>
+
+          <p class="text-center text-xs text-slate-500">
+            Dengan mengirim form ini, Anda setuju untuk dihubungi via WhatsApp/Email untuk konsultasi.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  // Form submission → redirect to WhatsApp
+  (function () {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const phone = formData.get('phone');
+      const service = formData.get('service') || 'Tidak ditentukan';
+      const budget = formData.get('budget') || 'Tidak ditentukan';
+      const message = formData.get('message');
+
+      const waMessage =
+        `Halo MassBim! Saya tertarik dengan layanan pembuatan website.\n\n` +
+        `Nama: ${name}\n` +
+        `Email: ${email}\n` +
+        `No. WhatsApp: ${phone}\n` +
+        `Layanan: ${service}\n` +
+        `Budget: ${budget}\n` +
+        `Pesan: ${message}`;
+
+      const waUrl = `https://wa.me/6281234567890?text=${encodeURIComponent(waMessage)}`;
+      window.open(waUrl, '_blank');
+    });
+  })();
+</script>

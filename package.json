@@ -1,0 +1,22 @@
+{
+  "name": "massbim-web-services",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Website jasa pembuatan website profesional - massbim.my.id",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.18",
+    "@astrojs/tailwind": "^5.1.5",
+    "tailwindcss": "^3.4.17"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true,
+    "sharp@0.33.5": true
+  }
+}

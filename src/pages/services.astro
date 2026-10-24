@@ -1,0 +1,87 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import ServiceCard from '@components/ServiceCard.astro';
+import ProcessSection from '@components/ProcessSection.astro';
+import FAQ from '@components/FAQ.astro';
+import CTA from '@components/CTA.astro';
+import Icon from '@components/Icon.astro';
+import { services } from '@data/services';
+
+const addonFeatures = [
+  { icon: 'globe', title: 'Domain & Hosting', desc: 'Bantuan registrasi domain dan setup hosting terbaik' },
+  { icon: 'mail', title: 'Email Bisnis', desc: 'Setup email profesional dengan domain Anda (name@bisnis.com)' },
+  { icon: 'shield', title: 'SSL Certificate', desc: 'Keamanan HTTPS untuk trust dan ranking Google' },
+  { icon: 'clock', title: 'Garansi 30 Hari', desc: 'Bug fix dan penyesuaian minor gratis setelah launch' },
+  { icon: 'users', title: 'Training & Dokumentasi', desc: 'Panduan lengkap cara update dan kelola website' },
+  { icon: 'trend', title: 'Google Analytics', desc: 'Tracking performa website dan visitor behavior' },
+];
+---
+
+<BaseLayout
+  title="Layanan — MassBim Jasa Pembuatan Website"
+  description="Layanan pembuatan website: Landing Page, Toko Online, Web UMKM, dan Custom Web Apps. Harga mulai Rp 500rb."
+>
+  <!-- Page header -->
+  <section class="container-max pt-12 pb-8 text-center">
+    <div class="badge mb-5 mx-auto" data-animate>
+      <Icon name="layers" class="w-3.5 h-3.5" />
+      Layanan Kami
+    </div>
+    <h1 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl mx-auto mb-5" data-animate>
+      Pilih Layanan yang <span class="text-gradient">Sesuai</span> Bisnis Anda
+    </h1>
+    <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-animate data-animate-delay="100">
+      Dari landing page sederhana sampai aplikasi web kompleks. Semua layanan dibuat custom,
+      bukan template, dengan teknologi terkini.
+    </p>
+  </section>
+
+  <!-- Services grid -->
+  <section class="container-max my-16">
+    <div class="grid sm:grid-cols-2 gap-6">
+      {services.map((service, i) => (
+        <ServiceCard service={service} delay={String((i % 2) * 100)} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Add-ons / Included -->
+  <section class="container-max my-24">
+    <SectionHeading
+      badge="Include dalam Semua Paket"
+      badgeIcon="check-circle"
+      title="Yang Anda Dapat"
+      highlight="di Setiap Proyek"
+      description="Tidak ada biaya tersembunyi. Semua ini sudah termasuk dalam setiap paket layanan."
+    />
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {addonFeatures.map((addon, i) => (
+        <div class="card-glow p-6 flex items-start gap-4" data-animate data-animate-delay={String((i % 3) * 100)}>
+          <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-violet-500/20 border border-brand-400/20 flex items-center justify-center text-brand-300">
+            <Icon name={addon.icon} class="w-5 h-5" />
+          </div>
+          <div>
+            <h3 class="font-semibold text-white text-sm mb-1">{addon.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{addon.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Process -->
+  <ProcessSection />
+
+  <!-- FAQ -->
+  <FAQ />
+
+  <!-- CTA -->
+  <CTA
+    title="Belum yakin paket mana yang cocok?"
+    description="Ceritakan kebutuhan bisnis Anda. Saya bantu rekomendasikan solusi terbaik yang sesuai budget."
+    primaryLabel="Konsultasi Gratis"
+    secondaryLabel="Lihat Portfolio"
+  />
+</BaseLayout>

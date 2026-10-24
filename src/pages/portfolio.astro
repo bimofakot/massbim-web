@@ -1,0 +1,99 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import PortfolioCard from '@components/PortfolioCard.astro';
+import CTA from '@components/CTA.astro';
+import Icon from '@components/Icon.astro';
+import { portfolioItems } from '@data/portfolio';
+
+const categories = ['Semua', 'Landing Page', 'Toko Online', 'Web UMKM', 'Custom Web Apps'];
+---
+
+<BaseLayout
+  title="Portfolio — MassBim Karya Website"
+  description="Kumpulan website yang telah dibuat: landing page, toko online, web UMKM, dan custom web apps."
+>
+  <!-- Page header -->
+  <section class="container-max pt-12 pb-8 text-center">
+    <div class="badge mb-5 mx-auto" data-animate>
+      <Icon name="star" class="w-3.5 h-3.5" />
+      Portfolio
+    </div>
+    <h1 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl mx-auto mb-5" data-animate>
+      Karya yang <span class="text-gradient">Bicara Sendiri</span>
+    </h1>
+    <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-animate data-animate-delay="100">
+      Setiap proyek adalah cerita unik. Lihat bagaimana saya bantu bisnis tumbuh dengan website profesional.
+    </p>
+  </section>
+
+  <!-- Filter buttons (visual only) -->
+  <section class="container-max mb-10">
+    <div class="flex flex-wrap items-center justify-center gap-2" data-animate>
+      {categories.map((cat, i) => (
+        <button
+          class={`portfolio-filter px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+            i === 0
+              ? 'bg-brand-500/20 text-brand-300 border border-brand-400/30'
+              : 'bg-white/5 text-slate-400 border border-white/10 hover:bg-white/10 hover:text-white'
+          }`}
+          data-category={cat}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Portfolio grid -->
+  <section class="container-max my-16">
+    <div id="portfolio-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {portfolioItems.map((item, i) => (
+        <div class="portfolio-item" data-category={item.category} data-animate data-animate-delay={String((i % 3) * 100)}>
+          <PortfolioCard item={item} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTA
+    title="Mau website Anda tampil di sini?"
+    description="Jadilah klien berikutnya. Mari diskusikan website impian bisnis Anda bersama saya."
+    primaryLabel="Mulai Proyek Sekarang"
+    secondaryLabel="Lihat Layanan"
+    secondaryHref="/services"
+  />
+</BaseLayout>
+
+<script is:inline>
+  // Portfolio filter
+  (function () {
+    const buttons = document.querySelectorAll('.portfolio-filter');
+    const items = document.querySelectorAll('.portfolio-item');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+
+        // Update active button
+        buttons.forEach((b) => {
+          b.classList.remove('bg-brand-500/20', 'text-brand-300', 'border-brand-400/30');
+          b.classList.add('bg-white/5', 'text-slate-400', 'border-white/10');
+        });
+        btn.classList.add('bg-brand-500/20', 'text-brand-300', 'border-brand-400/30');
+        btn.classList.remove('bg-white/5', 'text-slate-400', 'border-white/10');
+
+        // Filter items
+        items.forEach((item) => {
+          const itemCategory = item.getAttribute('data-category');
+          if (category === 'Semua' || itemCategory === category) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+  })();
+</script>

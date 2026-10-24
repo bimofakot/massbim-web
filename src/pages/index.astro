@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import ServiceCard from '@components/ServiceCard.astro';
+import WhyChooseUs from '@components/WhyChooseUs.astro';
+import ProcessSection from '@components/ProcessSection.astro';
+import PortfolioCard from '@components/PortfolioCard.astro';
+import TestimonialCard from '@components/TestimonialCard.astro';
+import FAQ from '@components/FAQ.astro';
+import CTA from '@components/CTA.astro';
+import Icon from '@components/Icon.astro';
+
+import { services } from '@data/services';
+import { portfolioItems } from '@data/portfolio';
+import { testimonials } from '@data/testimonials';
+
+const featuredPortfolio = portfolioItems.filter((p) => p.featured).concat(portfolioItems.filter((p) => !p.featured)).slice(0, 4);
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <Hero />
+
+  <!-- Services Preview -->
+  <section class="container-max my-24">
+    <SectionHeading
+      badge="Layanan"
+      badgeIcon="layers"
+      title="Solusi Website"
+      highlight="Untuk Setiap Kebutuhan"
+      description="Pilih layanan yang sesuai dengan kebutuhan bisnis Anda. Semua paket sudah include desain custom, development, dan support."
+    />
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {services.map((service, i) => (
+        <ServiceCard service={service} delay={String((i % 4) * 100)} />
+      ))}
+    </div>
+
+    <div class="text-center mt-10" data-animate>
+      <a href="/services" class="btn-secondary">
+        Lihat Semua Layanan
+        <Icon name="arrow" class="w-4 h-4" />
+      </a>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <WhyChooseUs />
+
+  <!-- Portfolio Preview -->
+  <section class="container-max my-24">
+    <SectionHeading
+      badge="Portfolio"
+      badgeIcon="star"
+      title="Karya yang"
+      highlight="Bicara Sendiri"
+      description="Beberapa contoh website yang sudah saya buat. Klik untuk kunjungi live demo-nya."
+    />
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+      {featuredPortfolio.map((item, i) => (
+        <PortfolioCard item={item} delay={String((i % 2) * 100)} />
+      ))}
+    </div>
+
+    <div class="text-center mt-10" data-animate>
+      <a href="/portfolio" class="btn-secondary">
+        Lihat Semua Portfolio
+        <Icon name="arrow" class="w-4 h-4" />
+      </a>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <ProcessSection />
+
+  <!-- Testimonials -->
+  <section class="container-max my-24">
+    <SectionHeading
+      badge="Testimoni"
+      badgeIcon="heart"
+      title="Apa Kata"
+      highlight="Klien Saya"
+      description="Kepuasan klien adalah prioritas utama. Inilah yang mereka katakan tentang hasil kerja saya."
+    />
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {testimonials.map((testimonial, i) => (
+        <TestimonialCard testimonial={testimonial} delay={String((i % 4) * 100)} />
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ />
+
+  <!-- CTA -->
+  <CTA />
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import Icon from './Icon.astro';
+import type { PortfolioItem } from '@data/portfolio';
+
+interface Props {
+  item: PortfolioItem;
+  delay?: string;
+}
+
+const { item, delay = '0' } = Astro.props;
+const isLive = item.url.startsWith('http');
+---
+
+<a
+  href={item.url}
+  target={isLive ? '_blank' : undefined}
+  rel={isLive ? 'noopener' : undefined}
+  class="card-glow group p-0 overflow-hidden flex flex-col h-full"
+  data-animate
+  data-animate-delay={delay}
+>
+  <!-- Preview area with gradient -->
+  <div class={`relative h-44 bg-gradient-to-br ${item.gradient} overflow-hidden`}>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <span class="font-display font-black text-6xl text-white/10 select-none">
+        {item.category}
+      </span>
+    </div>
+    <div class="absolute top-4 left-4">
+      <span class="badge bg-black/30 text-white border-white/20">
+        {item.category}
+      </span>
+    </div>
+    {isLive && (
+      <div class="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/90 text-white text-xs font-semibold">
+        <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+        Live
+      </div>
+    )}
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-transparent to-transparent"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-6 flex flex-col flex-grow">
+    <h3 class="font-display font-bold text-lg text-white mb-2 group-hover:text-brand-300 transition-colors">
+      {item.title}
+    </h3>
+    <p class="text-slate-400 text-sm leading-relaxed mb-4 flex-grow">{item.description}</p>
+
+    <!-- Tags -->
+    <div class="flex flex-wrap gap-1.5 mb-4">
+      {item.tags.map((tag) => (
+        <span class="px-2.5 py-1 rounded-lg text-xs bg-white/5 text-slate-400 border border-white/10">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <!-- Link -->
+    <div class="flex items-center gap-1.5 text-sm font-medium text-brand-300 group-hover:text-brand-200 transition-colors">
+      {isLive ? 'Kunjungi website' : 'Coming soon'}
+      <Icon name="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+    </div>
+  </div>
+</a>
