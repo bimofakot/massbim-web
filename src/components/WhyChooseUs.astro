@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { site } from '@data/site';
 
 const features = [
   {
@@ -39,7 +40,7 @@ const features = [
   <div class="text-center max-w-3xl mx-auto mb-14" data-animate>
     <div class="badge mb-4 mx-auto">
       <Icon name="heart" class="w-3.5 h-3.5" />
-      Kenapa Pilih MassBim
+      Kenapa Pilih {site.name}
     </div>
     <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
       Bukan Sekadar Website,<br class="hidden md:block" />

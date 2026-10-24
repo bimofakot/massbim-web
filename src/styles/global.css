@@ -1,9 +1,110 @@
+/* ===== Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Google Fonts ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+/* ============================================================
+   THEME TOKENS (CSS variables)
+   ------------------------------------------------------------
+   Tema mengikuti sistem perangkat (prefers-color-scheme).
+   - Default (di luar media query) = DARK MODE
+   - @media (prefers-color-scheme: light) = LIGHT MODE
+   Semua warna "tema" (white, slate, brand-300/400, violet-400,
+   accent-400) berasal dari sini, sehingga komponen yang memakai
+   class Tailwind terkait otomatis beradaptasi tanpa diedit.
+
+   Palet "dark" (--d-*) dipakai ulang oleh class .keep-light
+   untuk elemen di atas background berwarna/foto (logo, badge di
+   atas gambar, preview mockup) yang harus tetap tampil gelap di
+   kedua mode.
+   ============================================================ */
+:root {
+  /* Dark palette (default) */
+  --d-white: 255 255 255;
+  --d-slate-200: 226 232 240;
+  --d-slate-300: 203 213 225;
+  --d-slate-400: 148 163 184;
+  --d-slate-500: 100 116 139;
+  --d-brand-300: 165 180 252;
+  --d-brand-400: 129 140 248;
+  --d-violet-400: 167 139 250;
+  --d-accent-400: 34 211 238;
+  --d-bg: 10 10 20;
+
+  /* Light palette */
+  --l-white: 15 23 42;       /* slate-900 -> surface "gelap" di mode terang */
+  --l-slate-200: 51 65 85;   /* slate-700 -> teks body */
+  --l-slate-300: 51 65 85;   /* slate-700 */
+  --l-slate-400: 71 85 105;  /* slate-600 -> teks muted */
+  --l-slate-500: 100 116 139; /* slate-500 */
+  --l-brand-300: 79 70 229;  /* brand-600 -> indigo tegas di latar terang */
+  --l-brand-400: 99 102 241; /* brand-500 */
+  --l-violet-400: 139 92 246; /* violet-500 */
+  --l-accent-400: 8 145 178;  /* accent-600 -> cyan/sky tegas */
+  --l-bg: 248 250 252;       /* slate-50 */
+
+  /* Active theme = dark by default */
+  --c-white: var(--d-white);
+  --c-slate-200: var(--d-slate-200);
+  --c-slate-300: var(--d-slate-300);
+  --c-slate-400: var(--d-slate-400);
+  --c-slate-500: var(--d-slate-500);
+  --c-brand-300: var(--d-brand-300);
+  --c-brand-400: var(--d-brand-400);
+  --c-violet-400: var(--d-violet-400);
+  --c-accent-400: var(--d-accent-400);
+  --c-bg: var(--d-bg);
+
+  /* Background visual tokens */
+  --orb-opacity: 0.20;        /* glow orbs */
+  --grid-color: 99 102 241;    /* grid line (indigo) */
+  --grid-alpha: 0.05;
+  --aura-1: 99 102 241;        /* radial aura color 1 */
+  --aura-2: 34 211 238;        /* radial aura color 2 (cyan) */
+  --aura-alpha: 0.22;
+  --noise-opacity: 0.015;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --c-white: var(--l-white);
+    --c-slate-200: var(--l-slate-200);
+    --c-slate-300: var(--l-slate-300);
+    --c-slate-400: var(--l-slate-400);
+    --c-slate-500: var(--l-slate-500);
+    --c-brand-300: var(--l-brand-300);
+    --c-brand-400: var(--l-brand-400);
+    --c-violet-400: var(--l-violet-400);
+    --c-accent-400: var(--l-accent-400);
+    --c-bg: var(--l-bg);
+
+    --orb-opacity: 0.12;
+    --grid-color: 15 23 42;    /* slate-900 grid line di latar terang */
+    --grid-alpha: 0.05;
+    --aura-1: 99 102 241;      /* soft indigo */
+    --aura-2: 56 189 248;       /* soft sky */
+    --aura-alpha: 0.16;
+    --noise-opacity: 0.02;
+  }
+}
+
+/* Pin region ke tampilan dark di kedua mode.
+   Dipakai untuk teks/elemen di atas background berwarna atau foto
+   (logo gradient, badge di atas gambar, preview mockup) agar teks
+   putih tetap terbaca. */
+.keep-light {
+  --c-white: var(--d-white);
+  --c-slate-200: var(--d-slate-200);
+  --c-slate-300: var(--d-slate-300);
+  --c-slate-400: var(--d-slate-400);
+  --c-slate-500: var(--d-slate-500);
+  --c-brand-300: var(--d-brand-300);
+  --c-brand-400: var(--d-brand-400);
+  --c-violet-400: var(--d-violet-400);
+  --c-accent-400: var(--d-accent-400);
+}
 
 /* ===== Base ===== */
 @layer base {
@@ -13,8 +114,16 @@
   }
 
   body {
-    @apply bg-[#0a0a14] text-slate-200 font-sans antialiased;
+    background-color: rgb(var(--c-bg) / 1);
+    @apply text-slate-200 font-sans antialiased;
     overflow-x: hidden;
+  }
+
+  /* Smooth theme transition (light <-> dark) */
+  *,
+  *::before,
+  *::after {
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, fill 0.4s ease;
   }
 
   ::selection {
@@ -26,7 +135,7 @@
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-[#0a0a14];
+    background-color: rgb(var(--c-bg) / 1);
   }
   ::-webkit-scrollbar-thumb {
     @apply bg-brand-600/50 rounded-full;
@@ -47,7 +156,7 @@
     @apply bg-gradient-to-r from-amber-400 via-orange-400 to-pink-400 bg-clip-text text-transparent;
   }
 
-  /* Glass card */
+  /* Glass card (auto-adapt: white/* -> slate-based di light) */
   .glass {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
   }
@@ -56,13 +165,14 @@
     @apply transition-all duration-300 hover:bg-white/[0.08] hover:border-brand-400/30 hover:shadow-2xl hover:shadow-brand-500/10;
   }
 
-  /* Gradient button */
+  /* Gradient button — teks HARUS selalu putih (di atas gradient) */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-white
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold
            bg-gradient-to-r from-brand-600 to-violet-600
            transition-all duration-300 hover:from-brand-500 hover:to-violet-500
            hover:shadow-lg hover:shadow-brand-500/30 hover:-translate-y-0.5
            focus:outline-none focus:ring-2 focus:ring-brand-400/50;
+    color: #fff;
   }
 
   .btn-secondary {
@@ -77,9 +187,10 @@
     @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
   }
 
-  /* Animated gradient background orbs */
+  /* Animated gradient background orbs (opacity menyesuaikan mode) */
   .orb {
-    @apply absolute rounded-full blur-[120px] opacity-20 pointer-events-none;
+    @apply absolute rounded-full blur-[120px] pointer-events-none;
+    opacity: var(--orb-opacity);
   }
 
   /* Card with glow border on hover */
@@ -113,7 +224,7 @@
 [data-animate] {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition: opacity 0.7s ease, transform 0.7s ease, background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
 }
 
 [data-animate].is-visible {
@@ -132,14 +243,28 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.015;
+  opacity: var(--noise-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ===== Grid pattern background ===== */
+/* ===== Grid pattern background (subtle, fade di tepi) ===== */
 .grid-pattern {
   background-image:
-    linear-gradient(to right, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgb(var(--grid-color) / var(--grid-alpha)) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--grid-color) / var(--grid-alpha)) 1px, transparent 1px);
   background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 35%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 35%, #000 35%, transparent 100%);
+}
+
+/* ===== Section radial aura (glow berpendar di Hero & CTA) ===== */
+.section-aura {
+  position: absolute;
+  inset: -10% -5%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(45% 45% at 25% 15%, rgb(var(--aura-1) / var(--aura-alpha)), transparent 70%),
+    radial-gradient(45% 45% at 80% 85%, rgb(var(--aura-2) / var(--aura-alpha)), transparent 70%);
+  filter: blur(30px);
 }

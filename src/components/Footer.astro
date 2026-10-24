@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { site } from '@data/site';
 
 const year = new Date().getFullYear();
 
@@ -28,11 +29,11 @@ const footerLinks = {
       <!-- Brand -->
       <div class="lg:col-span-2">
         <a href="/" class="flex items-center gap-2.5 mb-5">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center font-display font-bold text-white text-lg">
-            M
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center font-display font-bold text-white text-lg keep-light">
+            {site.initial}
           </div>
           <span class="font-display font-bold text-xl text-white">
-            Mass<span class="text-gradient">Bim</span>
+            {site.namePrefix}<span class="text-gradient">{site.nameHighlight}</span>
           </span>
         </a>
         <p class="text-slate-400 text-sm leading-relaxed max-w-xs mb-6">
@@ -41,7 +42,7 @@ const footerLinks = {
         </p>
         <div class="flex gap-3">
           <a
-            href="https://wa.me/6281234567890"
+            href={`https://wa.me/${site.whatsapp.waNumber}`}
             target="_blank"
             rel="noopener"
             class="w-10 h-10 rounded-xl glass glass-hover flex items-center justify-center text-slate-400 hover:text-white"
@@ -50,14 +51,14 @@ const footerLinks = {
             <Icon name="whatsapp" class="w-5 h-5" />
           </a>
           <a
-            href="mailto:hello@massbim.my.id"
+            href={`mailto:${site.email}`}
             class="w-10 h-10 rounded-xl glass glass-hover flex items-center justify-center text-slate-400 hover:text-white"
             aria-label="Email"
           >
             <Icon name="mail" class="w-5 h-5" />
           </a>
           <a
-            href="https://massbim.my.id"
+            href={site.siteUrl}
             class="w-10 h-10 rounded-xl glass glass-hover flex items-center justify-center text-slate-400 hover:text-white"
             aria-label="Website"
           >
@@ -116,7 +117,7 @@ const footerLinks = {
     <!-- Bottom bar -->
     <div class="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-slate-500 text-sm">
-        &copy; {year} MassBim. Dibuat dengan <Icon name="heart" class="inline w-3.5 h-3.5 text-pink-500" /> di Indonesia.
+        &copy; {year} {site.name}. Dibuat dengan <Icon name="heart" class="inline w-3.5 h-3.5 text-pink-500" /> di Indonesia.
       </p>
       <p class="text-slate-500 text-xs">
         Powered by <span class="text-brand-400">Astro</span> & <span class="text-accent-400">Tailwind CSS</span>

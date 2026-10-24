@@ -1,29 +1,30 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Icon from '@components/Icon.astro';
+import { site } from '@data/site';
 
 const contactMethods = [
   {
     icon: 'whatsapp',
     label: 'WhatsApp',
-    value: '+62 812-3456-7890',
-    href: 'https://wa.me/6281234567890',
+    value: site.whatsapp.display,
+    href: `https://wa.me/${site.whatsapp.waNumber}`,
     desc: 'Respon paling cepat (biasanya <1 jam)',
     color: 'from-green-500 to-emerald-600',
   },
   {
     icon: 'mail',
     label: 'Email',
-    value: 'hello@massbim.my.id',
-    href: 'mailto:hello@massbim.my.id',
+    value: site.email,
+    href: `mailto:${site.email}`,
     desc: 'Untuk detail proyek yang panjang',
     color: 'from-brand-500 to-violet-600',
   },
   {
     icon: 'globe',
     label: 'Website',
-    value: 'massbim.my.id',
-    href: 'https://massbim.my.id',
+    value: site.domain,
+    href: site.siteUrl,
     desc: 'Lihat karya dan layanan saya',
     color: 'from-cyan-500 to-blue-600',
   },
@@ -34,8 +35,8 @@ const budgets = ['< Rp 1jt', 'Rp 1jt - 3jt', 'Rp 3jt - 5jt', 'Rp 5jt - 10jt', '>
 ---
 
 <BaseLayout
-  title="Kontak — MassBim Konsultasi Website"
-  description="Hubungi MassBim untuk konsultasi gratis pembuatan website. WhatsApp, email, atau isi form di sini."
+  title={`Kontak — ${site.name} Konsultasi Website`}
+  description={`Hubungi ${site.name} untuk konsultasi gratis pembuatan website. WhatsApp, email, atau isi form di sini.`}
 >
   <!-- Page header -->
   <section class="container-max pt-12 pb-8 text-center">
@@ -64,7 +65,7 @@ const budgets = ['< Rp 1jt', 'Rp 1jt - 3jt', 'Rp 3jt - 5jt', 'Rp 5jt - 10jt', '>
           data-animate
           data-animate-delay={String((i % 3) * 100)}
         >
-          <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
+          <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform keep-light`}>
             <Icon name={method.icon} class="w-6 h-6" />
           </div>
           <p class="text-slate-500 text-xs mb-1">{method.label}</p>
@@ -180,7 +181,7 @@ const budgets = ['< Rp 1jt', 'Rp 1jt - 3jt', 'Rp 3jt - 5jt', 'Rp 5jt - 10jt', '>
   </section>
 </BaseLayout>
 
-<script is:inline>
+<script is:inline define:vars={{ waNumber: site.whatsapp.waNumber, siteName: site.name }}>
   // Form submission → redirect to WhatsApp
   (function () {
     const form = document.getElementById('contact-form');
@@ -198,7 +199,7 @@ const budgets = ['< Rp 1jt', 'Rp 1jt - 3jt', 'Rp 3jt - 5jt', 'Rp 5jt - 10jt', '>
       const message = formData.get('message');
 
       const waMessage =
-        `Halo MassBim! Saya tertarik dengan layanan pembuatan website.\n\n` +
+        `Halo ${siteName}! Saya tertarik dengan layanan pembuatan website.\n\n` +
         `Nama: ${name}\n` +
         `Email: ${email}\n` +
         `No. WhatsApp: ${phone}\n` +
@@ -206,7 +207,7 @@ const budgets = ['< Rp 1jt', 'Rp 1jt - 3jt', 'Rp 3jt - 5jt', 'Rp 5jt - 10jt', '>
         `Budget: ${budget}\n` +
         `Pesan: ${message}`;
 
-      const waUrl = `https://wa.me/6281234567890?text=${encodeURIComponent(waMessage)}`;
+      const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
       window.open(waUrl, '_blank');
     });
   })();

@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { site } from '@data/site';
 
 const navLinks = [
   { label: 'Beranda', href: '/' },
@@ -27,11 +28,11 @@ const isActive = (href: string) => {
     >
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2.5 group">
-        <div class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center font-display font-bold text-white text-lg shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform">
-          M
+        <div class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center font-display font-bold text-white text-lg shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform keep-light">
+          {site.initial}
         </div>
         <span class="font-display font-bold text-xl text-white tracking-tight">
-          Mass<span class="text-gradient">Bim</span>
+          {site.namePrefix}<span class="text-gradient">{site.nameHighlight}</span>
         </span>
       </a>
 
@@ -103,14 +104,15 @@ const isActive = (href: string) => {
 <script is:inline>
   // Header scroll effect
   (function () {
-    const header = document.getElementById('site-header');
     const navBar = document.getElementById('nav-bar');
 
     function onScroll() {
       if (window.scrollY > 20) {
-        navBar?.classList.add('shadow-2xl', 'shadow-brand-500/5', 'bg-[#0a0a14]/80');
+        // Gunakan CSS variable --c-bg agar warna navbar saat scroll
+        // mengikuti tema sistem (light/dark) secara otomatis.
+        navBar?.classList.add('shadow-2xl', 'shadow-brand-500/5', 'nav-scrolled');
       } else {
-        navBar?.classList.remove('shadow-2xl', 'shadow-brand-500/5', 'bg-[#0a0a14]/80');
+        navBar?.classList.remove('shadow-2xl', 'shadow-brand-500/5', 'nav-scrolled');
       }
     }
 
@@ -130,3 +132,12 @@ const isActive = (href: string) => {
     });
   })();
 </script>
+
+<style>
+  /* Background navbar saat di-scroll — mengikuti warna background tema */
+  #nav-bar.nav-scrolled {
+    background-color: rgb(var(--c-bg) / 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+</style>

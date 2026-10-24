@@ -5,12 +5,13 @@ import PortfolioCard from '@components/PortfolioCard.astro';
 import CTA from '@components/CTA.astro';
 import Icon from '@components/Icon.astro';
 import { portfolioItems } from '@data/portfolio';
+import { site } from '@data/site';
 
 const categories = ['Semua', 'Landing Page', 'Toko Online', 'Web UMKM', 'Custom Web Apps'];
 ---
 
 <BaseLayout
-  title="Portfolio — MassBim Karya Website"
+  title={`Portfolio — ${site.name} Karya Website`}
   description="Kumpulan website yang telah dibuat: landing page, toko online, web UMKM, dan custom web apps."
 >
   <!-- Page header -->

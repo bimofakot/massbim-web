@@ -7,6 +7,7 @@ import FAQ from '@components/FAQ.astro';
 import CTA from '@components/CTA.astro';
 import Icon from '@components/Icon.astro';
 import { services } from '@data/services';
+import { site } from '@data/site';
 
 const addonFeatures = [
   { icon: 'globe', title: 'Domain & Hosting', desc: 'Bantuan registrasi domain dan setup hosting terbaik' },
@@ -19,7 +20,7 @@ const addonFeatures = [
 ---
 
 <BaseLayout
-  title="Layanan — MassBim Jasa Pembuatan Website"
+  title={`Layanan — ${site.name} Jasa Pembuatan Website`}
   description="Layanan pembuatan website: Landing Page, Toko Online, Web UMKM, dan Custom Web Apps. Harga mulai Rp 500rb."
 >
   <!-- Page header -->

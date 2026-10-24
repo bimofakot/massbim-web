@@ -1,15 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  // Tema mengikuti sistem perangkat (auto light/dark).
+  // Detail warna diatur via CSS variables di src/styles/global.css.
+  darkMode: 'media',
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
+        // Warna "tema" dirumuskan dari CSS variable agar otomatis
+        // berubah mengikuti prefers-color-scheme (light/dark).
+        // Format channel RGB (dipisah spasi) supaya opasitas Tailwind berfungsi.
+        white: 'rgb(var(--c-white) / <alpha-value>)',
+        slate: {
+          200: 'rgb(var(--c-slate-200) / <alpha-value>)',
+          300: 'rgb(var(--c-slate-300) / <alpha-value>)',
+          400: 'rgb(var(--c-slate-400) / <alpha-value>)',
+          500: 'rgb(var(--c-slate-500) / <alpha-value>)',
+        },
         brand: {
           50: '#eef2ff',
           100: '#e0e7ff',
           200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
+          300: 'rgb(var(--c-brand-300) / <alpha-value>)',
+          400: 'rgb(var(--c-brand-400) / <alpha-value>)',
           500: '#6366f1',
           600: '#4f46e5',
           700: '#4338ca',
@@ -18,9 +31,12 @@ export default {
           950: '#1e1b4b',
         },
         accent: {
-          400: '#22d3ee',
+          400: 'rgb(var(--c-accent-400) / <alpha-value>)',
           500: '#06b6d4',
           600: '#0891b2',
+        },
+        violet: {
+          400: 'rgb(var(--c-violet-400) / <alpha-value>)',
         },
       },
       fontFamily: {

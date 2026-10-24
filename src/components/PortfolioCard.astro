@@ -20,7 +20,7 @@ const isLive = item.url.startsWith('http');
   data-animate-delay={delay}
 >
   <!-- Preview area with gradient -->
-  <div class={`relative h-44 bg-gradient-to-br ${item.gradient} overflow-hidden`}>
+  <div class={`relative h-44 bg-gradient-to-br ${item.gradient} overflow-hidden keep-light`}>
     <div class="absolute inset-0 flex items-center justify-center">
       <span class="font-display font-black text-6xl text-white/10 select-none">
         {item.category}
@@ -37,7 +37,7 @@ const isLive = item.url.startsWith('http');
         Live
       </div>
     )}
-    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-transparent to-transparent"></div>
+    <div class="absolute inset-0 portfolio-fade-overlay"></div>
   </div>
 
   <!-- Content -->
@@ -63,3 +63,15 @@ const isLive = item.url.startsWith('http');
     </div>
   </div>
 </a>
+
+<style>
+  /* Gradient fade bawah preview card — mengikuti warna background tema */
+  .portfolio-fade-overlay {
+    background: linear-gradient(
+      to top,
+      rgb(var(--c-bg) / 1) 0%,
+      rgb(var(--c-bg) / 0.4) 40%,
+      transparent 100%
+    );
+  }
+</style>

@@ -3,6 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import SectionHeading from '@components/SectionHeading.astro';
 import CTA from '@components/CTA.astro';
 import Icon from '@components/Icon.astro';
+import { site } from '@data/site';
 
 const skills = [
   { name: 'Frontend Development', level: 95, tags: ['React', 'Astro', 'Next.js', 'Vue'] },
@@ -43,8 +44,8 @@ const journey = [
 ---
 
 <BaseLayout
-  title="Tentang — MassBim Web Developer"
-  description="Kenali MassBim — web developer freelance yang bantu bisnis Indonesia go digital dengan website profesional."
+  title={`Tentang — ${site.name} Web Developer`}
+  description={`Kenali ${site.name} — web developer freelance yang bantu bisnis Indonesia go digital dengan website profesional.`}
 >
   <!-- Page header -->
   <section class="container-max pt-12 pb-8 text-center">
@@ -53,7 +54,7 @@ const journey = [
       Tentang Kami
     </div>
     <h1 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl mx-auto mb-5" data-animate>
-      Halo, Saya <span class="text-gradient">MassBim</span>
+      Halo, Saya <span class="text-gradient">{site.name}</span>
     </h1>
     <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-animate data-animate-delay="100">
       Web developer freelance yang passionate bantu bisnis Indonesia punya website profesional,
@@ -67,12 +68,14 @@ const journey = [
       <!-- Profile visual -->
       <div class="lg:col-span-2" data-animate>
         <div class="relative glass rounded-3xl p-8 max-w-sm mx-auto">
-          <div class="w-40 h-40 mx-auto rounded-3xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center text-white text-7xl font-display font-black mb-6">
-            M
+          <div class="w-40 h-40 mx-auto rounded-3xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center text-white text-7xl font-display font-black mb-6 overflow-hidden keep-light">
+            {site.profileImage
+              ? <img src={site.profileImage} alt={site.name} class="w-full h-full object-cover" />
+              : site.initial}
           </div>
           <div class="text-center">
-            <h3 class="font-display font-bold text-xl text-white mb-1">MassBim</h3>
-            <p class="text-slate-400 text-sm mb-4">Full-Stack Web Developer</p>
+            <h3 class="font-display font-bold text-xl text-white mb-1">{site.name}</h3>
+            <p class="text-slate-400 text-sm mb-4">{site.tagline}</p>
             <div class="flex justify-center gap-2 flex-wrap">
               <span class="badge">Freelance</span>
               <span class="badge">Remote</span>
@@ -191,7 +194,7 @@ const journey = [
       badge="Perjalanan"
       badgeIcon="clock"
       title="Cerita di Balik"
-      highlight="MassBim"
+      highlight={site.name}
     />
 
     <div class="max-w-3xl mx-auto space-y-0">
@@ -199,7 +202,7 @@ const journey = [
         <div class="flex gap-5 group" data-animate data-animate-delay={String((i % 4) * 100)}>
           <!-- Timeline -->
           <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center text-white font-display font-bold text-sm flex-shrink-0 shadow-lg shadow-brand-500/30">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center text-white font-display font-bold text-sm flex-shrink-0 shadow-lg shadow-brand-500/30 keep-light">
               {i + 1}
             </div>
             {i < journey.length - 1 && (

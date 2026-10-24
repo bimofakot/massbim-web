@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
+import { site } from '@data/site';
 
 interface Props {
   title?: string;
@@ -9,15 +10,15 @@ interface Props {
 }
 
 const {
-  title = 'MassBim — Jasa Pembuatan Website Profesional',
-  description = 'Jasa pembuatan website profesional: Landing Page, Toko Online, Web UMKM, dan Custom Web Apps. Cepat, modern, dan terjangkau.',
+  title = site.defaultTitle,
+  description = site.defaultDescription,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="id" class="dark">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +31,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="robots" content="index, follow" />
-    <meta name="author" content="MassBim" />
+    <meta name="author" content={site.name} />
     <meta name="keywords" content="jasa pembuatan website, landing page, toko online, web umkm, custom web app, website murah, web developer indonesia" />
 
     <!-- Open Graph -->
@@ -38,7 +39,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="MassBim" />
+    <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="id_ID" />
 
     <!-- Twitter -->
@@ -51,9 +52,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      "name": "MassBim - Jasa Pembuatan Website",
+      "name": `${site.name} - Jasa Pembuatan Website`,
       "description": "Jasa pembuatan website profesional: Landing Page, Toko Online, Web UMKM, dan Custom Web Apps.",
-      "url": "https://massbim.my.id",
+      "url": site.siteUrl,
       "areaServed": "Indonesia",
       "priceRange": "Rp 500rb - Custom",
       "offers": {
