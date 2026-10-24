@@ -2,6 +2,7 @@
 #  CI/CD — Deploy ke Firebase Hosting
 # ------------------------------------------------------------
 #  Otomatis build & deploy setiap ada push ke branch main.
+#  Preview deploy otomatis untuk setiap pull request.
 # ============================================================
 
 name: Deploy to Firebase Hosting
@@ -62,7 +63,7 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           channelId: live
           projectId: massbim-web
 
@@ -86,5 +87,5 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           projectId: massbim-web
