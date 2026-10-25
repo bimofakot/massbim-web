@@ -10,9 +10,9 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     name: 'Rina Pratiwi',
-    role: 'Pemilik Toko Fashion',
+    role: 'Pemilik Toko Online',
     message:
-      'Hasilnya jauh di atas ekspektasi saya. Toko online-nya cepat, elegan, dan order langsung masuk minggu pertama. Komunikasi juga smooth banget!',
+      'Hasilnya jauh di atas ekspektasi saya. Toko online-nya cepat, elegan, dan order langsung masuk minggu pertama. Komunikasi juga smooth banget',
     rating: 5,
     initial: 'R',
     color: 'from-pink-500 to-rose-600',
@@ -30,7 +30,7 @@ export const testimonials: Testimonial[] = [
     name: 'Maya Anggraini',
     role: 'Pemilik Kuliner',
     message:
-      'Website UMKM saya jadi terlihat profesional. Pelanggan jadi lebih percaya. Tombol WhatsApp-nya bikin order jadi gampang. Terima kasih mas!',
+      'Website UMKM saya jadi terlihat profesional. Pelanggan jadi lebih percaya. Tombol WhatsApp-nya bikin order jadi gampang. Terima kasih mass',
     rating: 5,
     initial: 'M',
     color: 'from-amber-500 to-orange-600',
