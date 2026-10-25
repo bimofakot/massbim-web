@@ -28,9 +28,11 @@ const isActive = (href: string) => {
     >
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2.5 group">
-        <div class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center font-display font-bold text-white text-lg shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform keep-light">
-          {site.initial}
-        </div>
+        <div class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center font-display font-bold text-white text-lg shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform mb overflow-hidden keep-light">
+            {site.profileImage
+              ? <img src={site.profileImage} alt={site.name} class="w-full h-full object-cover" />
+              : site.initial}
+          </div>
         <span class="font-display font-bold text-xl text-white tracking-tight">
           {site.namePrefix}<span class="text-gradient">{site.nameHighlight}</span>
         </span>
