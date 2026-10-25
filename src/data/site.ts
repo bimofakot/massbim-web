@@ -11,7 +11,7 @@ export const site = {
   // name = nama brand yang tampil di seluruh website
   // namePrefix + nameHighlight dipakai untuk logo berwarna:
   //   tampil sebagai "Mass" (putih) + "bim" (gradient)
-  name: 'Massbim',
+  name: 'Bimo Praharbiyanto',
   namePrefix: 'Mass',
   nameHighlight: 'bim',
   fullName: 'Bimo Praharbiyanto',
@@ -40,8 +40,8 @@ export const site = {
   // favicon: ganti file di public/favicon.svg
   // profileImage: kosongkan '' untuk pakai huruf inisial.
   //   Untuk pakai foto asli: isi '/profile.png' lalu simpan foto di folder public/
-  favicon: '/favicon.svg',
-  profileImage: '',
+  favicon: '/favicon.png',
+  profileImage: '/profile.png',
 
   // --- Default SEO (dipakai kalau halaman tidak menentukan title sendiri) ---
   defaultTitle: 'Massbim — Jasa Pembuatan Website Profesional',
