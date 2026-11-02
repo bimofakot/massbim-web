@@ -1,0 +1,9 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import JasaPage from '@/features/jasa/JasaPage.astro';
+import { pageMeta } from '@/features/jasa/content';
+---
+
+<BaseLayout title={pageMeta.title} description={pageMeta.description}>
+  <JasaPage />
+</BaseLayout>

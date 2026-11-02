@@ -1,0 +1,28 @@
+---
+import type { Cta } from '../content';
+
+interface Props {
+  title: string;
+  description: string;
+  cta: Cta;
+}
+
+const { title, description, cta } = Astro.props;
+---
+
+<section class="mt-12 sm:mt-24" aria-labelledby="jasa-penutup">
+  <div class="rounded-card border border-line bg-surface p-6 sm:p-12">
+    <h2 id="jasa-penutup" class="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+      {title}
+    </h2>
+    <p class="mt-3 max-w-xl text-muted">{description}</p>
+    <a
+      href={cta.href}
+      class="btn btn-primary mt-6"
+      target={cta.external ? '_blank' : undefined}
+      rel={cta.external ? 'noopener' : undefined}
+    >
+      {cta.label}
+    </a>
+  </div>
+</section>

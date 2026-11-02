@@ -1,0 +1,29 @@
+---
+import type { AffordabilityPoint } from '../content';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  points: AffordabilityPoint[];
+}
+
+const { eyebrow, title, points } = Astro.props;
+---
+
+<section class="mt-12 sm:mt-24" aria-labelledby="jasa-biaya">
+  <div class="rounded-card border border-line bg-surface p-6 sm:p-12">
+    <p class="text-xs font-medium uppercase tracking-[0.16em] text-muted">{eyebrow}</p>
+    <h2 id="jasa-biaya" class="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+      {title}
+    </h2>
+
+    <dl class="mt-6 grid gap-x-6 gap-y-6 sm:grid-cols-2">
+      {points.map((point) => (
+        <div class="border-t border-line pt-4">
+          <dt class="text-base font-semibold text-ink">{point.title}</dt>
+          <dd class="mt-1 text-sm leading-relaxed text-muted">{point.description}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
