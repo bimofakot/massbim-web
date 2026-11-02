@@ -1,0 +1,85 @@
+---
+import '@fontsource-variable/dm-sans';
+import '@/shared/tokens.css';
+import '@/shared/base.css';
+
+interface Props {
+  title: string;
+  description: string;
+  siteName?: string;
+  noindex?: boolean;
+  structuredData?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  siteName = 'Massbim',
+  noindex = false,
+  structuredData,
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalHref =
+  canonicalURL.pathname === '/'
+    ? canonicalURL.origin
+    : canonicalURL.href.replace(/\/$/, '');
+const ogImageURL = new URL('/og.png', Astro.site);
+const robots = noindex ? 'noindex, follow' : 'index, follow';
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fbfaf7" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {!noindex && <link rel="canonical" href={canonicalHref} />}
+    <meta name="robots" content={robots} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Massbim — katalog tools kecil dan jasa pembuatan website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
+    <meta
+      name="twitter:image:alt"
+      content="Massbim — katalog tools kecil dan jasa pembuatan website"
+    />
+
+    {structuredData && (
+      <script
+        is:inline
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData)}
+      ></script>
+    )}
+
+    <meta name="google-adsense-account" content="ca-pub-2857877448318373" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2857877448318373"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const waHref = `${site.contact.whatsapp.link}?text=${encodeURIComponent(site.contact.whatsapp.message)}`;
+
+const links = [
+  { label: 'WhatsApp', value: site.contact.whatsapp.display, href: waHref, external: true },
+  { label: 'Email', value: site.contact.email, href: `mailto:${site.contact.email}`, external: false },
+  { label: 'Instagram', value: site.contact.instagram.label, href: site.contact.instagram.link, external: true },
+  { label: 'GitHub', value: site.contact.github.label, href: site.contact.github.link, external: true },
+];
+---
+
+<BaseLayout
+  title="Kontak — Massbim"
+  description="Hubungi Bimo lewat WhatsApp, email, Instagram, atau GitHub."
+>
+  <section class="pt-4 sm:pt-6">
+    <p class="text-xs font-medium uppercase tracking-[0.16em] text-muted">Info</p>
+    <h1 class="mt-4 text-4xl font-bold tracking-tight text-ink sm:text-5xl">Kontak</h1>
+    <p class="mt-6 max-w-xl text-muted">Pilih kanal yang paling nyaman.</p>
+
+    <div class="mt-12 max-w-2xl overflow-hidden rounded-card border border-line bg-card">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="flex flex-col gap-1 border-b border-line px-6 py-4 no-underline transition-colors duration-150 last:border-b-0 hover:bg-surface sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+          target={link.external ? '_blank' : undefined}
+          rel={link.external ? 'noopener' : undefined}
+        >
+          <span class="text-sm text-muted">{link.label}</span>
+          <span class="break-all font-medium text-ink">{link.value}</span>
+        </a>
+      ))}
+    </div>
+
+    <p class="mt-6 text-sm text-muted">
+      Untuk urusan jasa, sertakan gambaran singkat kebutuhan Anda di pesan pertama.
+    </p>
+  </section>
+</BaseLayout>
