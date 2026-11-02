@@ -1,0 +1,31 @@
+---
+import {
+  affordability,
+  closing,
+  examples,
+  faq,
+  hero,
+  process,
+  rental,
+  services,
+  servicesIntro,
+  servicesNote,
+} from './content';
+import JasaHero from './components/JasaHero.astro';
+import ServicesSection from './components/ServicesSection.astro';
+import AffordabilitySection from './components/AffordabilitySection.astro';
+import RentalSection from './components/RentalSection.astro';
+import ProcessSection from './components/ProcessSection.astro';
+import ExamplesSection from './components/ExamplesSection.astro';
+import FaqSection from './components/FaqSection.astro';
+import ClosingSection from './components/ClosingSection.astro';
+---
+
+<JasaHero {...hero} />
+<ServicesSection intro={servicesIntro} services={services} note={servicesNote} />
+<AffordabilitySection {...affordability} />
+<RentalSection {...rental} />
+<ProcessSection {...process} />
+<ExamplesSection {...examples} />
+<FaqSection {...faq} />
+<ClosingSection {...closing} />

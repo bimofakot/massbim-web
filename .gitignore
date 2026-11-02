@@ -24,7 +24,8 @@ pnpm-debug.log*
 # ===== Firebase =====
 # .firebaserc dan firebase.json perlu di-commit (berisi konfigurasi project)
 # Yang TIDAK boleh di-commit:
-.firebase/           # cache deploy lokal
+# cache deploy lokal
+.firebase/
 firebase-debug.log
 firebase-debug.*.log
 firestore-debug.log

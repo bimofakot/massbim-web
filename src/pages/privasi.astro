@@ -1,0 +1,62 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+---
+
+<BaseLayout
+  title="Privasi — Massbim"
+  description="Kebijakan privasi massbim.my.id."
+>
+  <article class="pt-4 sm:pt-6">
+    <p class="text-xs font-medium uppercase tracking-[0.16em] text-muted">Info</p>
+    <h1 class="mt-4 text-4xl font-bold tracking-tight text-ink sm:text-5xl">Privasi</h1>
+    <p class="mt-4 text-sm text-muted">Terakhir diperbarui: 2 November 2026</p>
+
+    <div class="prose-column mt-12 space-y-12 border-t border-line pt-6 text-muted">
+      <p>
+        Situs massbim.my.id adalah situs statis. Saya tidak menyediakan akun, formulir, atau
+        kolom komentar, dan tidak mengumpulkan data pribadi secara langsung.
+      </p>
+
+      <section>
+        <h2 class="text-xl font-semibold tracking-tight text-ink">Data teknis</h2>
+        <p class="mt-2">
+          Situs ini di-hosting di Firebase (Google). Penyedia hosting dapat mencatat data teknis
+          seperti alamat IP, jenis browser, dan waktu akses untuk keperluan keamanan dan
+          operasional.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold tracking-tight text-ink">Iklan</h2>
+        <p class="mt-2">
+          Situs ini belum menampilkan iklan. Kode Google AdSense sudah dipasang untuk verifikasi.
+          Jika iklan diaktifkan, Google dan mitranya dapat menggunakan cookie untuk menayangkan
+          iklan. Halaman ini akan diperbarui saat iklan aktif.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold tracking-tight text-ink">Tautan keluar</h2>
+        <p class="mt-2">
+          Situs ini berisi tautan ke WhatsApp, email, Instagram, GitHub, dan subdomain
+          massbim.my.id. Saat Anda membuka tautan tersebut, kebijakan privasi layanan
+          masing-masing berlaku.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold tracking-tight text-ink">Perubahan</h2>
+        <p class="mt-2">Halaman ini akan diperbarui jika ada perubahan pada situs.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold tracking-tight text-ink">Kontak</h2>
+        <p class="mt-2">
+          Pertanyaan tentang privasi bisa dikirim ke{' '}
+          <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.
+        </p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

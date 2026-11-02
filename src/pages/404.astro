@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Halaman tidak ditemukan — Massbim"
+  description="Halaman yang Anda cari tidak ada di massbim.my.id."
+  noindex
+>
+  <section class="max-w-xl pt-4 sm:pt-6">
+    <p class="text-xs font-medium uppercase tracking-[0.16em] text-muted">404</p>
+    <h1 class="mt-4 text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+      Halaman tidak ditemukan.
+    </h1>
+    <p class="mt-6 text-muted">
+      Alamat ini mungkin sudah berubah atau tidak pernah ada.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-4">
+      <a href="/" class="btn btn-primary">Kembali ke beranda</a>
+      <a href="/#katalog" class="btn btn-secondary">Lihat katalog</a>
+    </div>
+  </section>
+</BaseLayout>

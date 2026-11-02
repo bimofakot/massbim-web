@@ -1,145 +1,38 @@
 ---
-import Icon from './Icon.astro';
-import { site } from '@data/site';
+import { site } from '@/config/site';
 
-const navLinks = [
-  { label: 'Beranda', href: '/' },
-  { label: 'Layanan', href: '/services' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Tentang', href: '/about' },
-  { label: 'Kontak', href: '/contact' },
-];
-
-const currentPath = Astro.url.pathname;
-const isActive = (href: string) => {
-  if (href === '/') return currentPath === '/';
-  return currentPath.startsWith(href);
-};
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 
-<header
-  id="site-header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
->
-  <div class="container-max">
-    <nav
-      class="flex items-center justify-between mt-4 px-6 py-3.5 rounded-2xl glass transition-all duration-300"
-      id="nav-bar"
+<header class="site-header">
+  <div class="page-container flex items-center justify-between gap-4 py-4">
+    <a
+      href="/"
+      class="text-lg font-semibold tracking-tight text-ink no-underline hover:text-ink hover:no-underline"
     >
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5 group">
-        <div class="relative w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-violet-600 flex items-center justify-center font-display font-bold text-white text-lg shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform mb overflow-hidden keep-light">
-            {site.profileImage
-              ? <img src={site.profileImage} alt={site.name} class="w-full h-full object-cover" />
-              : site.initial}
-          </div>
-        <span class="font-display font-bold text-xl text-white tracking-tight">
-          {site.namePrefix}<span class="text-gradient">{site.nameHighlight}</span>
-        </span>
-      </a>
+      {site.name}
+    </a>
 
-      <!-- Desktop Nav -->
-      <div class="hidden lg:flex items-center gap-1">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive(link.href)
-                ? 'text-white bg-white/10'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            {link.label}
-          </a>
+    <nav aria-label="Navigasi utama">
+      <ul class="flex items-center gap-x-2 text-sm sm:gap-x-6">
+        {site.nav.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+              class:list={[
+                'block py-1 no-underline transition-colors duration-150',
+                isActive(link.href)
+                  ? 'font-medium text-ink'
+                  : 'text-muted hover:text-ink',
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
         ))}
-      </div>
-
-      <!-- CTA Button -->
-      <div class="hidden lg:block">
-        <a href="/contact" class="btn-primary text-sm py-2.5 px-5">
-          <Icon name="sparkles" class="w-4 h-4" />
-          Konsultasi Gratis
-        </a>
-      </div>
-
-      <!-- Mobile menu button -->
-      <button
-        id="mobile-menu-btn"
-        class="lg:hidden text-white p-2"
-        aria-label="Toggle menu"
-      >
-        <Icon name="menu" class="w-6 h-6 menu-icon" />
-        <Icon name="x" class="w-6 h-6 close-icon hidden" />
-      </button>
+      </ul>
     </nav>
-
-    <!-- Mobile Menu -->
-    <div
-      id="mobile-menu"
-      class="lg:hidden hidden mt-2 px-6 py-4 rounded-2xl glass"
-    >
-      <div class="flex flex-col gap-1">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-              isActive(link.href)
-                ? 'text-white bg-white/10'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            {link.label}
-          </a>
-        ))}
-        <a href="/contact" class="btn-primary text-sm mt-2">
-          <Icon name="sparkles" class="w-4 h-4" />
-          Konsultasi Gratis
-        </a>
-      </div>
-    </div>
   </div>
 </header>
-
-<!-- Spacer for fixed header -->
-<div class="h-24"></div>
-
-<script is:inline>
-  // Header scroll effect
-  (function () {
-    const navBar = document.getElementById('nav-bar');
-
-    function onScroll() {
-      if (window.scrollY > 20) {
-        // Gunakan CSS variable --c-bg agar warna navbar saat scroll
-        // mengikuti tema sistem (light/dark) secara otomatis.
-        navBar?.classList.add('shadow-2xl', 'shadow-brand-500/5', 'nav-scrolled');
-      } else {
-        navBar?.classList.remove('shadow-2xl', 'shadow-brand-500/5', 'nav-scrolled');
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = menuBtn?.querySelector('.menu-icon');
-    const closeIcon = menuBtn?.querySelector('.close-icon');
-
-    menuBtn?.addEventListener('click', () => {
-      mobileMenu?.classList.toggle('hidden');
-      menuIcon?.classList.toggle('hidden');
-      closeIcon?.classList.toggle('hidden');
-    });
-  })();
-</script>
-
-<style>
-  /* Background navbar saat di-scroll — mengikuti warna background tema */
-  #nav-bar.nav-scrolled {
-    background-color: rgb(var(--c-bg) / 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-</style>

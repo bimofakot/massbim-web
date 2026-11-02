@@ -1,0 +1,32 @@
+---
+import type { ProcessStep } from '../content';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  steps: ProcessStep[];
+}
+
+const { eyebrow, title, steps } = Astro.props;
+---
+
+<section class="mt-12 sm:mt-24" aria-labelledby="jasa-alur">
+  <div class="border-t border-line pt-6">
+    <p class="text-xs font-medium uppercase tracking-[0.16em] text-muted">{eyebrow}</p>
+    <h2 id="jasa-alur" class="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+      {title}
+    </h2>
+  </div>
+
+  <ol class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {steps.map((step, index) => (
+      <li class="border-t border-line pt-4">
+        <span class="text-xs font-medium tracking-[0.14em] text-muted">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <h3 class="mt-2 text-base font-semibold text-ink">{step.title}</h3>
+        <p class="mt-1 text-sm leading-relaxed text-muted">{step.description}</p>
+      </li>
+    ))}
+  </ol>
+</section>

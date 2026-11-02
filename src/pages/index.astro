@@ -1,101 +1,77 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import Hero from '@components/Hero.astro';
-import SectionHeading from '@components/SectionHeading.astro';
-import ServiceCard from '@components/ServiceCard.astro';
-import WhyChooseUs from '@components/WhyChooseUs.astro';
-import ProcessSection from '@components/ProcessSection.astro';
-import PortfolioCard from '@components/PortfolioCard.astro';
-import TestimonialCard from '@components/TestimonialCard.astro';
-import FAQ from '@components/FAQ.astro';
-import CTA from '@components/CTA.astro';
-import Icon from '@components/Icon.astro';
-
-import { services } from '@data/services';
-import { portfolioItems } from '@data/portfolio';
-import { testimonials } from '@data/testimonials';
-
-const featuredPortfolio = portfolioItems.filter((p) => p.featured).concat(portfolioItems.filter((p) => !p.featured)).slice(0, 4);
+import { site } from '@/config/site';
 ---
 
-<BaseLayout>
-  <!-- Hero -->
-  <Hero />
-
-  <!-- Services Preview -->
-  <section class="container-max my-24">
-    <SectionHeading
-      badge="Layanan"
-      badgeIcon="layers"
-      title="Solusi Website"
-      highlight="Untuk Setiap Kebutuhan"
-      description="Pilih layanan yang sesuai dengan kebutuhan bisnis Anda. Semua paket sudah include desain custom, development, dan support."
-    />
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      {services.map((service, i) => (
-        <ServiceCard service={service} delay={String((i % 4) * 100)} />
-      ))}
-    </div>
-
-    <div class="text-center mt-10" data-animate>
-      <a href="/services" class="btn-secondary">
-        Lihat Semua Layanan
-        <Icon name="arrow" class="w-4 h-4" />
-      </a>
+<BaseLayout
+  title="Massbim — Katalog tools"
+  description="Katalog tools kecil buatan Bimo Praharbiyanto."
+>
+  <section class="pb-12 pt-4 sm:pt-6">
+    <p class="text-xs font-medium uppercase tracking-[0.16em] text-muted">Katalog tools</p>
+    <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+      Tools kecil untuk kebutuhan sehari-hari.
+    </h1>
+    <p class="mt-6 max-w-xl text-muted">
+      Massbim adalah tempat saya menyimpan tools yang saya buat sendiri. Sebagian sudah bisa
+      dipakai, sebagian masih dalam pengembangan.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-4">
+      <a href="#katalog" class="btn btn-primary">Lihat katalog</a>
+      <a href="/jasa" class="btn btn-secondary">Jasa pembuatan website</a>
     </div>
   </section>
 
-  <!-- Why Choose Us -->
-  <WhyChooseUs />
-
-  <!-- Portfolio Preview -->
-  <section class="container-max my-24">
-    <SectionHeading
-      badge="Portfolio"
-      badgeIcon="star"
-      title="Karya yang"
-      highlight="Bicara Sendiri"
-      description="Beberapa contoh website yang sudah saya buat. Klik untuk kunjungi live demo-nya."
-    />
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
-      {featuredPortfolio.map((item, i) => (
-        <PortfolioCard item={item} delay={String((i % 2) * 100)} />
-      ))}
+  <section id="katalog" class="scroll-mt-24" aria-labelledby="katalog-judul">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-line pt-6">
+      <h2 id="katalog-judul" class="text-2xl font-semibold tracking-tight text-ink">Katalog</h2>
+      <p class="text-sm text-muted">{site.catalog.length} tools, sebagian masih dikembangkan.</p>
     </div>
 
-    <div class="text-center mt-10" data-animate>
-      <a href="/portfolio" class="btn-secondary">
-        Lihat Semua Portfolio
-        <Icon name="arrow" class="w-4 h-4" />
-      </a>
-    </div>
-  </section>
+    <div class="catalog-grid mt-6">
+      {site.catalog.map((tool) => (
+        <article class="card flex flex-col p-6">
+          <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <h3 class="text-xl font-semibold tracking-tight text-ink">{tool.name}</h3>
+            <span
+              class:list={['status-label', tool.status === 'Aktif' && 'status-label-active']}
+            >
+              {tool.status}
+            </span>
+          </div>
 
-  <!-- Process -->
-  <ProcessSection />
+          <p class="mt-2 flex-1 text-muted">{tool.summary}</p>
 
-  <!-- Testimonials -->
-  <section class="container-max my-24">
-    <SectionHeading
-      badge="Testimoni"
-      badgeIcon="heart"
-      title="Apa Kata"
-      highlight="Klien Saya"
-      description="Kepuasan klien adalah prioritas utama. Inilah yang mereka katakan tentang hasil kerja saya."
-    />
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      {testimonials.map((testimonial, i) => (
-        <TestimonialCard testimonial={testimonial} delay={String((i % 4) * 100)} />
+          <div class="mt-6 border-t border-line pt-4 text-sm">
+            {tool.url ? (
+              <a
+                href={tool.url}
+                class="font-medium"
+                target="_blank"
+                rel="noopener"
+              >
+                {tool.urlLabel ?? tool.url}
+              </a>
+            ) : (
+              <span class="text-muted">Tautan menyusul</span>
+            )}
+          </div>
+        </article>
       ))}
     </div>
   </section>
 
-  <!-- FAQ -->
-  <FAQ />
-
-  <!-- CTA -->
-  <CTA />
+  <section class="mt-12 sm:mt-24" aria-labelledby="jasa-judul">
+    <div class="rounded-card border border-line bg-surface p-6 sm:p-12">
+      <p class="text-xs font-medium uppercase tracking-[0.16em] text-muted">Jasa</p>
+      <h2 id="jasa-judul" class="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+        Butuh website untuk usaha kecil?
+      </h2>
+      <p class="mt-3 max-w-xl text-muted">
+        Saya juga menerima pembuatan website. Halaman jasa berisi penjelasan singkat soal
+        pekerjaan yang bisa saya bantu.
+      </p>
+      <a href="/jasa" class="btn btn-primary mt-6">Lihat halaman jasa</a>
+    </div>
+  </section>
 </BaseLayout>

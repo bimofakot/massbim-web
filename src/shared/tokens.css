@@ -1,0 +1,37 @@
+/* Token desain bersama untuk portal dan modul jasa. */
+:root {
+  /* Warna */
+  --color-bg: #fbfaf7;
+  --color-surface: #f4f1ea;
+  --color-card: #ffffff;
+  --color-text: #171614;
+  --color-muted: #6b655d;
+  --color-border: #e5e0d6;
+  --color-border-strong: #d2cabb;
+  --color-accent: #1f5a45;
+  --color-accent-hover: #174534;
+  --color-accent-soft: #e9f1ec;
+
+  /* Tipografi */
+  --font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --text-body: 1.0625rem;
+  --leading-body: 1.7;
+
+  /* Radius */
+  --radius-card: 10px;
+  --radius-control: 8px;
+  --radius-label: 4px;
+
+  /* Jarak: 4 / 8 / 16 / 24 / 48 / 96 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 48px;
+  --space-6: 96px;
+
+  /* Lebar */
+  --width-page: 64rem;
+  --width-prose: 42rem;
+}
