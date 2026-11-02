@@ -5,6 +5,104 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "trailingSlash": false,
+    "cleanUrls": true,
+    "redirects": [
+      {
+        "source": "/services",
+        "destination": "/jasa",
+        "type": 301
+      },
+      {
+        "source": "/services/",
+        "destination": "/jasa",
+        "type": 301
+      },
+      {
+        "source": "/portfolio",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/portfolio/",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/about",
+        "destination": "/tentang",
+        "type": 301
+      },
+      {
+        "source": "/about/",
+        "destination": "/tentang",
+        "type": 301
+      },
+      {
+        "source": "/contact",
+        "destination": "/kontak",
+        "type": 301
+      },
+      {
+        "source": "/contact/",
+        "destination": "/kontak",
+        "type": 301
+      },
+      {
+        "source": "/privacy",
+        "destination": "/privasi",
+        "type": 301
+      },
+      {
+        "source": "/privacy/",
+        "destination": "/privasi",
+        "type": 301
+      }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Strict-Transport-Security",
+            "value": "max-age=31536000; includeSubDomains"
+          },
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "X-Frame-Options",
+            "value": "DENY"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          },
+          {
+            "key": "Permissions-Policy",
+            "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+          },
+          {
+            "key": "Content-Security-Policy",
+            "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://adservice.google.com https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google; connect-src 'self' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; manifest-src 'self'; upgrade-insecure-requests"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/_astro/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      }
     ]
   }
 }
