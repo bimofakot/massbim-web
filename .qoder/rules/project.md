@@ -22,8 +22,13 @@ description: Aturan proyek Massbim — konten jujur, desain tenang, struktur por
 
 ## Git dan deploy
 
-- Kerjakan perubahan di branch baru. Jangan pernah commit langsung ke `main`.
-- Jangan push ke GitHub atau memicu deploy sebelum pengguna memberi izin eksplisit.
+- Di awal setiap tugas: jalankan git fetch dan pastikan branch lokal sinkron dengan origin sebelum mengubah apa pun. Laporkan jika berbeda.
+- Branch selain `main`: boleh langsung commit DAN push. Jangan meninggalkan commit lokal yang belum di-push.
+- Branch `main`: JANGAN commit atau push ke `main` tanpa konfirmasi dari pengguna terlebih dulu. Merge ke `main` dilakukan lewat PR yang disetujui.
+- Sebelum push pertama di repo ini, periksa workflow: pastikan push ke branch selain `main` tidak men-deploy ke produksi. Jika ada kemungkinan deploy dari branch lain, hentikan dan tanyakan dulu.
+- Pesan commit singkat dan bermakna dalam bahasa Inggris.
+- Setelah aturan Git diubah, laporkan bahwa aturan sudah ditambahkan; commit dan push perubahan aturan itu hanya jika branch aktif bukan `main`, kalau branch aktif `main` tanyakan dulu.
+- Pengecekan sinkron (`git fetch`) dilakukan SEKALI SAJA saat pertama kali bekerja di repo ini. JANGAN diulang di setiap tugas atau perintah. Ulangi hanya jika pengguna menyebut berganti perangkat, atau jika push ditolak karena riwayat berbeda.
 - Jangan menghapus file tanpa izin. Untuk audit, laporkan temuan saja.
 - Deploy produksi Firebase hanya terjadi dari push ke `main`. Pull request hanya mendapat preview channel.
 
