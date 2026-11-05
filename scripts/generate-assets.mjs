@@ -11,7 +11,7 @@ const fontPath = path.join(
   root,
   'node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2',
 );
-const faviconSvgPath = path.join(publicDir, 'favicon.svg');
+const faviconSvgPath = path.join(publicDir, 'brand/massbim-favicon-pine.svg');
 const ogPath = path.join(publicDir, 'og.png');
 
 const browsers = [
@@ -116,7 +116,7 @@ try {
   );
   await sharp(faviconSvg, { density: 384 })
     .resize(180, 180)
-    .flatten({ background: '#fbfaf7' })
+    .flatten({ background: '#1f5a45' })
     .png()
     .toFile(path.join(publicDir, 'apple-touch-icon.png'));
 

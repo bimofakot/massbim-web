@@ -21,6 +21,10 @@ pnpm-debug.log*
 # ===== Astro =====
 .astro/
 
+# ===== Aset kerja lokal =====
+# Eksperimen, preview, dan backup logo — tidak dipakai situs
+vibe_images/
+
 # ===== Firebase =====
 # .firebaserc dan firebase.json perlu di-commit (berisi konfigurasi project)
 # Yang TIDAK boleh di-commit:

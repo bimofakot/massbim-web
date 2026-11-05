@@ -6,16 +6,23 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 ---
 
 <header class="site-header">
-  <div class="page-container flex items-center justify-between gap-4 py-4">
+  <div class="page-container flex items-center justify-between gap-2 py-4 sm:gap-4">
     <a
       href="/"
-      class="text-lg font-semibold tracking-tight text-ink no-underline hover:text-ink hover:no-underline"
+      class="flex shrink-0 items-center gap-2 text-lg font-semibold tracking-tight text-ink no-underline hover:text-ink hover:no-underline"
     >
+      <img
+        src="/brand/massbim-favicon-pine.svg"
+        alt=""
+        width="28"
+        height="28"
+        class="h-7 w-7"
+      />
       {site.name}
     </a>
 
     <nav aria-label="Navigasi utama">
-      <ul class="flex items-center gap-x-2 text-sm sm:gap-x-6">
+      <ul class="flex items-center gap-x-1 text-sm sm:gap-x-6">
         {site.nav.map((link) => (
           <li>
             <a
